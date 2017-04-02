@@ -1,2 +1,2 @@
-vim:
+vim-enhanced:
   pkg.installed
