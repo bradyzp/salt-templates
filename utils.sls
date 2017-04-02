@@ -1,3 +1,2 @@
-vim.packages:
-  pkg.installed:
-    - vim
+vim:
+  pkg.installed
