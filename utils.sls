@@ -1,2 +1,0 @@
-vim-enhanced:
-  pkg.installed
