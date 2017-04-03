@@ -6,3 +6,5 @@ confluence_rproxy:
         - group: root
         - mode: 660
         - makedirs: True
+        - require:
+            - pkg: nginx
