@@ -1,3 +1,6 @@
+include:
+    - nginx.installed
+
 confluence_rproxy:
     file.managed:
         - name: /etc/nginx/conf.d/confluence.conf
