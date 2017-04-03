@@ -1,6 +1,6 @@
 base:
   '*':
-    - utilities.utils
+    - util.vim.installed
     - nginx.confluence
-    - nginx
+    - nginx.installed
       
