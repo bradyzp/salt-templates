@@ -2,13 +2,16 @@
 {% set install_dir     = salt['pillar.get']('confluence:config:install_dir') %}
 {% set home_dir        = salt['pillar.get']('confluence:config:home_dir') %}
 
+include:
+    - util.jre
+
 confluence_user:
     user.present:
         - name: {{ confluence_user }}
         - system: True
-        - createhome: False
+        - createhome: True
         - gid_from_name: True
-        - shell: /sbin/nologin
+        - shell: /bin/bash
 
 confluence_install_dir:
     file.directory:
@@ -17,6 +20,8 @@ confluence_install_dir:
         - group: {{ confluence_user }}
         - makedirs: True
         - dir_mode: 740
+        - require:
+            - user: confluence_user
 
 confluence_home_dir:
     file.directory:
@@ -24,7 +29,7 @@ confluence_home_dir:
         - user: {{ confluence_user }}
         - group: {{ confluence_user }}
         - makedirs: True
-        - dir_mode: 640
+        - dir_mode: 740
 
 confluence_files_extracted:
     archive.extracted:
@@ -34,6 +39,17 @@ confluence_files_extracted:
         - group: {{ confluence_user }}
         - options: --strip-components=1
 
+confluence_set_permission:
+    file.directory:
+        - name: {{ install_dir }}
+        - user: {{ confluence_user }}
+        - group: {{ confluence_user }}
+        - recurse:
+            - user
+            - group
+        - require:
+            - archive: confluence_files_extracted
+
 confluence_homedir_setting:
     file.managed:
         - name: {{ install_dir }}/confluence/WEB-INF/classes/confluence-init.properties
@@ -42,7 +58,7 @@ confluence_homedir_setting:
         - replace: True
         - user: {{ confluence_user }}
         - group: {{ confluence_user }}
-        - mode: 640
+        - mode: 740
         - defaults:
             home_dir: {{ home_dir }}
 
@@ -81,3 +97,5 @@ confluence_systemd_unit:
     service.running:
         - name: confluence.service
         - enable: True
+        - require:
+            - pkg: jre_installed
