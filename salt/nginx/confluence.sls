@@ -9,5 +9,10 @@ confluence_rproxy:
         - group: root
         - mode: 660
         - makedirs: True
+        - dir_mode: 660
         - require:
             - pkg: nginx
+
+default_conf:
+    file.absent:
+        - name: /etc/nginx/conf.d/default.conf
