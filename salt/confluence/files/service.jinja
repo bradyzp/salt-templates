@@ -1,0 +1,16 @@
+[Unit]
+Description=Confluence Collaboration Server
+After=network.target
+
+[Service]
+Environment=JRE_HOME={{ install_dir }}/jre/bin
+Environment=JAVA_HOME={{ install_dir }}/jre/bin
+
+Type=forking
+User={{ confluence_user }}
+PIDFile={{ install_dir }}/work/catalina.pid
+ExecStart={{ install_dir }}/bin/start-confluence.sh
+ExecStop={{ install_dir }}/bin/stop-confluence.sh
+
+[Install]
+WantedBy=multi-user.target
