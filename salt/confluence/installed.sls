@@ -34,7 +34,7 @@ confluence_home_dir:
 confluence_files_extracted:
     archive.extracted:
         - name: {{ install_dir }}
-        - source: salt://confluence/files/atlassian-confluence-6.1.1.tar.gz
+        - source: salt://confluence/atlassian-confluence-6.1.1.tar.gz
         - user: {{ confluence_user }}
         - group: {{ confluence_user }}
         - options: --strip-components=1
@@ -53,7 +53,7 @@ confluence_set_permission:
 confluence_homedir_setting:
     file.managed:
         - name: {{ install_dir }}/confluence/WEB-INF/classes/confluence-init.properties
-        - source: salt://confluence/files/confluence-init.jinja
+        - source: salt://confluence/templates/confluence-init.properties.jinja
         - template: jinja
         - replace: True
         - user: {{ confluence_user }}
@@ -65,7 +65,7 @@ confluence_homedir_setting:
 confluence_server_xml_setting:
     file.managed:
         - name: {{ install_dir }}/conf/server.xml
-        - source: salt://confluence/files/server.jinja
+        - source: salt://confluence/templates/server.xml.jinja
         - template: jinja
         - replace: True
         - user: {{ confluence_user }}
@@ -81,7 +81,7 @@ confluence_server_xml_setting:
 confluence_systemd_unit:
     file.managed:
         - name: /etc/systemd/system/confluence.service
-        - source: salt://confluence/files/service.jinja
+        - source: salt://confluence/templates/confluence.service.jinja
         - template: jinja
         - replace: True
         - user: root
