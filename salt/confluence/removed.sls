@@ -2,22 +2,24 @@
 {% set install_dir = salt['pillar.get']('confluence:config:install_dir') %}
 {% set home_dir = salt['pillar.get']('confluence:config:home_dir') %}
 
-confluence_service_stopped:
+{%- from "confluence/map.jinja" import confluence with context -%}
+
+confluence_service_dead:
     service.dead:
         - name: confluence.service
         - enable: False
-        - require_in:
-            - file: confluence_install_dir_absent
-            - file: confluence_home_dir_absent
-            - file: confluence_systemd_unit_absent
 
-confluence_install_dir_absent:
+confluence_remove_home:
     file.absent:
-        - name: {{ install_dir }}
+        - name: {{ confluence.config.home_dir }}
+        - require:
+            - service: confluence_service_dead
 
-confluence_home_dir_absent:
+confluence_remove_install:
     file.absent:
-        - name: {{ home_dir }}
+        - name: {{ confluence.config.install_dir }}
+        - require:
+            - service: confluence_service_dead
 
 confluence_systemd_unit_absent:
     file.absent:
@@ -29,4 +31,6 @@ confluence_systemd_unit_absent:
 
 confluence_user_absent:
     user.absent:
-        - name: {{ confluence_user }}
+        - name: {{ confluence.config.user }}
+        - require:
+            - service: confluence_service_dead

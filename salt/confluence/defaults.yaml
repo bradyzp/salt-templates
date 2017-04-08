@@ -1,0 +1,7 @@
+confluence:
+  config:
+    archive: salt://confluence/atlassian-confluence-6.1.1.tar.gz
+    home_dir: /var/atlassian/application-data/confluence
+    install_dir: /opt/atlassian/confluence
+    http_port: 8090
+    user: confluence
