@@ -1,0 +1,10 @@
+firewall:
+    internal:
+        interfaces:
+            - eno16777984
+        services:
+            - ssh
+            - http
+            - https
+        default: False
+        masquerade: False

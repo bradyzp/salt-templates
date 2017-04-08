@@ -3,3 +3,4 @@ network:
     dns:
         - 192.168.0.20
         - 192.168.0.30
+    NM_enabled: False

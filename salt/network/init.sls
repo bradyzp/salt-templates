@@ -5,3 +5,15 @@ systemwide_config:
         - enabled: True
         - gateway: {{ network.gateway }}
         - hostname: {{ salt['grains.get']('fqdn', 'localhost.local') }}
+
+
+
+networkmanager_config:
+    {% if network.NM_enabled %}
+    service.running:
+        - name: NetworkManager
+    {% else %}
+    service.dead:
+        - name: NetworkManager
+        - enabled: False
+    {% endif %}
