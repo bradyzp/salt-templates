@@ -2,7 +2,7 @@
 
 systemwide_config:
     network.system:
-        - enabled: True
+        - enable: True
         - gateway: {{ network.gateway }}
         - hostname: {{ salt['grains.get']('fqdn', 'localhost.local') }}
 
@@ -15,5 +15,5 @@ networkmanager_config:
     {% else %}
     service.dead:
         - name: NetworkManager
-        - enabled: False
+        - enable: False
     {% endif %}
