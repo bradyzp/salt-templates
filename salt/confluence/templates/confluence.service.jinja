@@ -3,8 +3,8 @@ Description=Confluence Collaboration Server
 After=network.target
 
 [Service]
-Environment=JRE_HOME=/usr
-Environment=JAVA_HOME=/usr
+Environment=JRE_HOME={{ jre_path }}
+Environment=JAVA_HOME={{ jre_path }}
 
 Type=forking
 User={{ confluence_user }}

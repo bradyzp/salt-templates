@@ -2,7 +2,7 @@ base:
   '*':
     - util.vim.installed
     - nginx.confluence
-    - confluence.installed
+    - confluence
     - network
     - postgres.server
     - postgres.manage

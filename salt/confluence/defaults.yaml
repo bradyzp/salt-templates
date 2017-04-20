@@ -1,6 +1,7 @@
 confluence:
   config:
     archive: salt://confluence/atlassian-confluence-6.1.1.tar.gz
+    source_hash: sha1=0915890039535f831ed5ff44b70288cb97638d69 
     home_dir: /var/atlassian/application-data/confluence
     install_dir: /opt/atlassian/confluence
     http_port: 8090

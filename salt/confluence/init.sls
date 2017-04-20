@@ -7,7 +7,16 @@
 {%- endmacro %}
 
 include:
-    - util.jre
+    - util.oracle_jre
+
+extend:
+    jre_install:
+        archive.extracted:
+            - name: {{ confluence.config.install_dir }}/jre
+            - user: {{ confluence.config.user }}
+            - group: {{ confluence.config.user }}
+            - require_in:
+                - file: confluence_install
 
 confluence_user:
     user.present:
@@ -44,7 +53,7 @@ confluence_install:
     archive.extracted:
         - name: {{ confluence.config.install_dir }}
         - source: {{ confluence.config.archive }}
-        - source_hash: sha1=0915890039535f831ed5ff44b70288cb97638d69 
+        - source_hash: {{ confluence.config.source_hash }}
         {{ usrgrp(confluence.config.user) }}
         - options: --strip-components=1
         - require:
@@ -58,6 +67,7 @@ confluence_install:
             - group
         - require:
             - archive: confluence_install
+            - archive: jre_install
             - user: confluence_user
 
 confluence_homedir_setting:
@@ -99,6 +109,7 @@ confluence_service:
         - defaults:
             install_dir: {{ confluence.config.install_dir }}
             confluence_user: {{ confluence.config.user }}
+            jre_path: {{ confluence.config.install_dir }}/jre
     module.run:
         - name: service.systemctl_reload
         - onchanges:
@@ -106,8 +117,6 @@ confluence_service:
     service.running:
         - name: confluence.service
         - enable: True
-        - require:
-            - pkg: jre_installed
         - watch:
             - file: confluence_server_xml_setting
             - file: confluence_homedir_setting
