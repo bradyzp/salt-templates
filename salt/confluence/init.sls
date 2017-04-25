@@ -15,7 +15,7 @@ extend:
             - name: {{ confluence.config.install_dir }}/jre
             - user: {{ confluence.config.user }}
             - group: {{ confluence.config.user }}
-	    - require:
+            - require:
                 - user: confluence_user
             - require_in:
                 - file: confluence_install
