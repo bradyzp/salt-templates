@@ -6,3 +6,7 @@ confluence:
     install_dir: /opt/atlassian/confluence
     http_port: 8090
     user: confluence
+  proxy:
+    proxy_name: web.dynamicgravitysystems.com
+    proxy_port: 443
+    proxy_scheme: https
