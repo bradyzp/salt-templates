@@ -1,9 +1,8 @@
 base:
   '*':
     - util.vim.installed
+  'dgs-web-prod*':
     - nginx.confluence
     - confluence
-    - network
     - postgres.server
     - postgres.manage
-      
