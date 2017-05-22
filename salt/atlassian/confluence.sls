@@ -75,7 +75,7 @@ confluence_install:
 confluence_homedir_setting:
     file.managed:
         - name: {{ confluence.config.install_dir }}/confluence/WEB-INF/classes/confluence-init.properties
-        - source: salt://confluence/templates/confluence-init.properties.jinja
+        - source: salt://atlassian/templates/confluence-init.properties.jinja
         - template: jinja
         - replace: True
         {{ usrgrp(confluence.config.user) }}
@@ -88,7 +88,7 @@ confluence_homedir_setting:
 confluence_server_xml_setting:
     file.managed:
         - name: {{ confluence.config.install_dir }}/conf/server.xml
-        - source: salt://confluence/templates/server.xml.jinja
+        - source: salt://atlassian/templates/server.xml.jinja
         - template: jinja
         - replace: True
         {{ usrgrp(confluence.config.user) }}
@@ -103,7 +103,7 @@ confluence_server_xml_setting:
 confluence_service:
     file.managed:
         - name: /etc/systemd/system/confluence.service
-        - source: salt://confluence/templates/confluence.service.jinja
+        - source: salt://atlassian/templates/confluence.service.jinja
         - template: jinja
         - replace: True
         {{ usrgrp('root') }}
