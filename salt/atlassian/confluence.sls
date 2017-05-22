@@ -1,4 +1,4 @@
-{%- from "confluence/map.jinja" import confluence with context -%}
+{%- from "atlassian/map.jinja" import confluence with context -%}
 
 # To reduce repetitive user: group: statements
 {% macro usrgrp(user) -%}

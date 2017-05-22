@@ -10,3 +10,7 @@ confluence:
     proxy_name: web.dynamicgravitysystems.com
     proxy_port: 443
     proxy_scheme: https
+jira:
+  config:
+  proxy:
+

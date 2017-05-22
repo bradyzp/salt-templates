@@ -9,6 +9,13 @@
                 proxyName="{{ proxy_name }}" proxyPort="{{ proxy_port }}" scheme="{{ proxy_scheme }}"
                 {% endif %}/>
 
+        <Connector port="8091" connectionTimeout="20000" redirectPort="8443"
+                maxThreads="48" minSpareThreads="10"
+                enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
+                protocol="org.apache.coyote.http11.Http11NioProtocol" 
+		proxyName="web.ad.dynamicgravitysystems.com" proxyPort="80" scheme="http"
+		/>
+
 
         <Engine name="Standalone" defaultHost="localhost" debug="0">
             <Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="false" startStopThreads="4">
