@@ -1,0 +1,8 @@
+{% import_yaml "nginx/defaults.yaml" as defaults %}
+
+{% set confluence = salt['grains.filter_by'](
+  defaults,
+  merge=salt['pillar.get']('nginx:confluence', {}),
+  base='common',
+  )
+%}

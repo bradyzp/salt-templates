@@ -1,0 +1,6 @@
+common:
+  site: wiki.ad.rusthawk.net
+  ssl: False
+  listen_port: 80
+RedHat:
+Debian:

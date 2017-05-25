@@ -1,4 +1,4 @@
-confluence:
+common:
   config:
     archive: https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-6.1.1.tar.gz
     source_hash: sha1=0915890039535f831ed5ff44b70288cb97638d69 
@@ -14,3 +14,5 @@ jira:
   config:
   proxy:
 
+RedHat:
+Debian:

@@ -1,17 +1,23 @@
+{%- from "nginx/map.jinja" import confluence with context -%}
+
 include:
     - nginx.installed
 
 confluence_rproxy:
-    file.managed:
-        - name: /etc/nginx/conf.d/confluence.conf
-        - source: salt://nginx/files/confluence.conf
-        - user: root
-        - group: root
-        - mode: 660
-        - makedirs: True
-        - dir_mode: 660
-        - require:
-            - pkg: nginx
+  file.managed:
+    - name: /etc/nginx/conf.d/confluence.conf
+    - source: salt://nginx/files/confluence.conf
+    - user: root
+    - group: root
+    - mode: 660
+    - makedirs: True
+    - dir_mode: 660
+    - template: jinja
+    - defaults:
+      - proxy_name: {{ confluence.site }}
+      - listen_port: {{ confluence.listen_port }}
+    - require:
+      - pkg: nginx
 
 default_conf:
     file.absent:
