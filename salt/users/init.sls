@@ -32,6 +32,7 @@ user-{{ user }}:
         {% endif %}
         {% if 'home' in items %}
         - home: {{ items.home }}
+        - createhome: True
         {% endif %}
         {% if 'shell' in items %}
         - shell: {{ items.shell }}
@@ -50,6 +51,16 @@ user-{{ user }}:
         {% endif %}
 
 {% if 'publickey' in items %}
+ssh_dir-{{ user }}:
+    file.directory:
+        - name: ~{{ items.name }}/.ssh
+        - user: {{ items.name }}
+        - group: {{ items.name }}
+        - dir_mode: 750
+        - file_mode: 610
+        - require_in:
+            - ssh_auth-{{ user }}
+
 ssh_auth-{{ user }}:
     ssh_auth.present:
         - name: {{ items.publickey }}
