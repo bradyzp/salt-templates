@@ -63,7 +63,8 @@ ssh_dir-{{ user }}:
 
 ssh_auth-{{ user }}:
     ssh_auth.present:
-        - name: {{ items.publickey }}
+        - names: 
+            - {{ items.publickey }}
         - user: {{ user }}
         - enc: {{ items.pktype }}
         - comment: {{ items.pkcomment }}
