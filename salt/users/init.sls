@@ -65,7 +65,7 @@ ssh_auth-{{ user }}:
     ssh_auth.present:
         - names: 
             - {{ items.publickey }}
-        - user: {{ user }}
+        - user: {{ items.name }}
         - enc: {{ items.pktype }}
         - comment: {{ items.pkcomment }}
         - require:
