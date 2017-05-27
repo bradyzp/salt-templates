@@ -47,8 +47,6 @@ user-{{ user }}:
             {% for group in items.groups %}
             - {{ group }}
             {% endfor %}
-        {% else %}
-            - {{ user }}
         {% endif %}
 
 {% if 'publickey' in items %}
