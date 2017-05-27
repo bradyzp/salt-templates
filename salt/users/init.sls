@@ -51,12 +51,13 @@ user-{{ user }}:
             - {{ user }}
         {% endif %}
 
-{% if 'public-key' in items %}
+{% if 'publickey' in items %}
 ssh_auth-{{ user }}:
     ssh_auth.present:
-        - name: {{ items.public-key }}
+        - name: {{ items.publickey }}
         - user: {{ user }}
-        - enc: {{ items.pk-type }}
+        - enc: {{ items.pktype }}
+        - comment: {{ items.pkcomment }}
         - require:
             - user: user-{{ user }}
 {% endif %}
