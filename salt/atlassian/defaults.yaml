@@ -7,12 +7,15 @@ common:
     http_port: 8090
     user: confluence
   proxy:
-    proxy_name: web.dynamicgravitysystems.com
+    proxy_name: wiki.example.com
     proxy_port: 443
     proxy_scheme: https
 jira:
   config:
   proxy:
+    proxy_name: jira.example.com
+    proxy_port: 443
+    proxy_scheme: https
 
 RedHat:
 Debian:
