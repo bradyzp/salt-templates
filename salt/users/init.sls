@@ -45,12 +45,12 @@ user-{{ user }}:
             - {{ user }}
         {% endif %}
 
-{% if 'pubkey' in items and items.pubkey == true %}
+{% if 'public-key' in items %}
 ssh_auth-{{ user }}:
     ssh_auth.present:
+        - name: {{ items.public-key }}
         - user: {{ user }}
-        - enc: ssh-rsa
-        - source: salt://users/keys/{{ user }}-id_rsa.pub
+        - enc: {{ items.pk-type }}
         - require:
             - user: user-{{ user }}
 {% endif %}

@@ -6,3 +6,4 @@ base:
     - atlassian.confluence
     - postgres.server
     - postgres.manage
+    - users
