@@ -22,14 +22,20 @@ group-{{ gid }}:
 user-{{ user }}:
     user.present:
         - name: {{ items.name }}
+        {% if 'uid' in items %}
         - uid: {{ items.uid }}
+        {% endif %}
         {% if 'gid' in items %}
         - gid: {{ items.gid }}
         {% else %}
         - gid_from_name: True
         {% endif %}
+        {% if 'home' in items %}
         - home: {{ items.home }}
+        {% endif %}
+        {% if 'shell' in items %}
         - shell: {{ items.shell }}
+        {% endif %}
         {%- if user.password is defined %}
         - password: {{ items.password }}
         {% endif %}
