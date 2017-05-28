@@ -30,6 +30,8 @@ nginx_service:
 nginx_test:
     cmd.run:
         - name: nginx -t
+        - require_in:
+            cmd: nginx_reload
 
 nginx_reload:
     cmd.run:
@@ -37,5 +39,3 @@ nginx_reload:
         - onchanges:
             - file: confluence_rproxy
             - file: default_conf
-        - require:
-            - cmd: nginx_test
