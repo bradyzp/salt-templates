@@ -93,12 +93,8 @@ confluence_server_xml_setting:
         - replace: True
         {{ usrgrp(confluence.config.user) }}
         - mode: 640
-        - defaults:
-            proxy: True
-            context_path: {{ confluence.proxy.get('context_path', '') }}
-            proxy_name: {{ confluence.proxy.proxy_name }}
-            proxy_port: {{ confluence.proxy.proxy_port }}
-            proxy_scheme: {{ confluence.proxy.proxy_scheme }}
+        - context:
+            proxy: confluence.proxy
 
 confluence_service:
     file.managed:
