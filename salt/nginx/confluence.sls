@@ -32,8 +32,9 @@ nginx_test:
         - name: nginx -t
         - require:
             - service: nginx_service
-        - require_in:
-            - cmd: nginx_reload
+        - onchanges:
+            - file: confluence_rproxy
+            - file: default_conf
 
 nginx_reload:
     cmd.run:
@@ -41,6 +42,8 @@ nginx_reload:
         - onchanges:
             - file: confluence_rproxy
             - file: default_conf
+        - require:
+            - cmd: nginx_test
 
 sebool_httpd_connect:
     selinux.boolean:
