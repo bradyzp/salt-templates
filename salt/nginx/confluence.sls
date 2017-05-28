@@ -13,7 +13,7 @@ confluence_rproxy:
     - makedirs: True
     - dir_mode: 660
     - template: jinja
-    - content: {{ confluence.server}}
+    - content: {{ confluence }}
     - require:
       - pkg: nginx
 
