@@ -16,6 +16,3 @@ jira:
     proxy_name: jira.example.com
     proxy_port: 443
     proxy_scheme: https
-
-RedHat:
-Debian:
