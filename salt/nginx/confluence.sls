@@ -21,3 +21,21 @@ confluence_rproxy:
 default_conf:
     file.absent:
         - name: /etc/nginx/conf.d/default.conf
+
+nginx_service:
+    service.running:
+        - name: nginx.service
+        - enable: True
+
+nginx_test:
+    cmd.run:
+        - name: nginx -t
+
+nginx_reload:
+    cmd.run:
+        - name: nginx -s reload
+        - onchanges:
+            - file: confluence_rproxy
+            - file: default_conf
+        - require:
+            - cmd: nginx_test
