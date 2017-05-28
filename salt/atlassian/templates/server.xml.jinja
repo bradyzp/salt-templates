@@ -1,4 +1,3 @@
-{%- set scheme='scheme="https"' if proxy.ssl else set scheme='' -%}
 <!--This File is Managed by SaltStack Configuration Management - any changes will be overwritten -->
 <Server port="8000" shutdown="SHUTDOWN" debug="0">
     <Service name="Tomcat-Standalone">
@@ -6,7 +5,7 @@
                 maxThreads="48" minSpareThreads="10"
                 enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                 protocol="org.apache.coyote.http11.Http11NioProtocol" 
-                proxyName="{{ proxy.server_name }}" proxyPort="{{ proxy.listen_port }}" {{ scheme }}
+                proxyName="{{ proxy.server_name }}" proxyPort="{{ proxy.listen_port }}" scheme="{{ 'https' if proxy.ssl else 'http' }}"
                 />
 
         <Engine name="Standalone" defaultHost="localhost" debug="0">
