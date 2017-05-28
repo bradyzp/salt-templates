@@ -94,7 +94,7 @@ confluence_server_xml_setting:
         {{ usrgrp(confluence.config.user) }}
         - mode: 640
         - context:
-            proxy: confluence.proxy
+            proxy: {{ confluence.proxy }}
 
 confluence_service:
     file.managed:
