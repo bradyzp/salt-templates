@@ -12,6 +12,7 @@ confluence_rproxy:
     - mode: 660
     - makedirs: True
     - dir_mode: 660
+    - backup: minion
     - template: jinja
     - context: 
         config: {{ confluence.config|json() }}
