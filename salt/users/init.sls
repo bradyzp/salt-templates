@@ -51,7 +51,7 @@ user-{{ user }}:
         {% endif %}
 
 {% if 'publickey' in items %}
-ssh_dir-{{ user }}:
+{# ssh_dir-{{ user }}:
     file.directory:
         - name: ~{{ items.name }}/.ssh
         - user: {{ items.name }}
@@ -60,7 +60,7 @@ ssh_dir-{{ user }}:
         - file_mode: 610
         - require_in:
             - ssh_auth-{{ user }}
-
+#}
 ssh_auth-{{ user }}:
     ssh_auth.present:
         - names: 
